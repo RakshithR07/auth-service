@@ -9,15 +9,15 @@ pipeline {
 			steps {git url:'https://github.com/RakshithR07/authentication-service.git', branch:'main'}			
 			}		
 		stage('Build'){			
-			steps {sh "mvn clean install -DskipTests"}		
+			steps {bat "mvn clean install -DskipTests"}		
 		}		
 		stage('PreDeploy'){			
-			steps { sh "docker rmi -f auth-image ."			    
-			            sh "docker rm -f auth-service"}	
+			steps { bat "docker rmi -f auth-image ."			    
+			            bat "docker rm -f auth-service"}	
 		}
 		stage('Deploy') {			
-			steps { sh "docker build -t auth-image ."			    
-			            sh "docker run -p 6090:8090 -d --name auth-service auth-image"}		
+			steps { bat "docker build -t auth-image ."			    
+			            bat "docker run -p 6090:8090 -d --name auth-service auth-image"}		
 		}		
 	}
 }
