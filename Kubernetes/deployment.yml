@@ -1,0 +1,40 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: nginx-deployment
+#   labels:
+#     env: sandbox
+# spec:
+#   replicas: 3
+#   selector:
+#     matchLabels:
+#       env: sandbox
+#   template:
+#     metadata:
+#       labels:
+#         env: sandbox
+#     spec:
+#       containers:
+#       - name: nginx
+#         image: nginx
+#         ports:
+#         - containerPort: 80
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-service-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: authentication-service
+  template:
+    metadata:
+      labels:
+        app: authentication-service
+    spec:
+      containers:
+        - name: authentication-service
+          image: rakshithr07/authentication-service-img  # Replace with the actual image name
+          ports:
+            - containerPort: 8090  # Replace with the port your app is running on inside the container

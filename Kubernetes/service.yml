@@ -1,0 +1,25 @@
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: authentication-service-img
+#   labels:
+#     env: sandbox
+# spec:
+#   type: LoadBalancer
+#   ports:
+#   - port: 80
+#   selector:
+#     env: sandbox
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication-service
+  labels:
+    app: authentication-service
+spec:
+  type: LoadBalancer  # Expose service externally (if needed)
+  ports:
+    - port: 2090         # External port for accessing the service
+      targetPort: 8090  # The port on the container (same as containerPort in Deployment)
+  selector:
+    app: authentication-service  # Ensure this matches the labels of the deployment
